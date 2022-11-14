@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import {
   Button,
   Field,
@@ -12,47 +12,35 @@ import {
 import { Navigate } from "react-router-dom";
 import UserService from "../../../services/users";
 
-function RegisterForm() {
-  const [name, setName] = useState("");
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [redirectRegister, setRedirectRegister] = useState(false);
+  const [redirectNotes, setRedirectNotes] = useState(false);
   const [error, setError] = useState(false);
-  const [redirectLogin, setRedirectLogin] = useState(false);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
 
     try {
-      const user = await UserService.register({
-        name: name,
+      const user = await UserService.login({
         email: email,
         password: password,
       });
-      setRedirectLogin(true);
+      setRedirectNotes(true);
     } catch (error) {
       setError(true);
     }
   };
 
-  if (redirectLogin === true) return <Navigate to="/login" />;
+  if (redirectRegister === true) return <Navigate to="/register" />;
+  else if (redirectNotes) return <Navigate to="/notes" />;
 
   return (
     <Fragment>
       <Column.Group centered>
         <form onSubmit={handleSubmit}>
           <Column size={12}>
-            <Field>
-              <Label size="small">Name:</Label>
-              <Control>
-                <Input
-                  type="name"
-                  required
-                  name="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Control>
-            </Field>
             <Field>
               <Label size="small">Email:</Label>
               <Control>
@@ -83,14 +71,14 @@ function RegisterForm() {
                   <Column>
                     <a
                       className="button is-white has-text-custom-purple"
-                      onClick={(e) => setRedirectLogin(true)}
+                      onClick={(e) => setRedirectRegister(true)}
                     >
-                      Login or
+                      Register or
                     </a>
                   </Column>
                   <Column>
                     <Button color="custom-purple" outlined>
-                      Register
+                      Login
                     </Button>
                   </Column>
                 </Column.Group>
@@ -104,4 +92,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default LoginForm;
