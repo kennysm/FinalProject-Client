@@ -9,7 +9,7 @@ import {
   Help,
   Label,
 } from "rbx";
-import { Navigate } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import UserService from "../../../services/users";
 
 function RegisterForm() {
@@ -34,7 +34,7 @@ function RegisterForm() {
     }
   };
 
-  if (redirectLogin === true) return <Navigate to="/login" />;
+  if (redirectLogin === true) return <Redirect to={{ pathname: "/login" }} />;
 
   return (
     <Fragment>
