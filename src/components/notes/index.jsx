@@ -25,6 +25,11 @@ function Notes(props) {
     }
   }
 
+  const createNote = async () => {
+    await NotesService.create();
+    fetchNotes();
+  };
+
   const selectNote = (id) => {
     const note = notes.find((note) => {
       return note._id == id;
@@ -36,6 +41,7 @@ function Notes(props) {
     <Fragment>
       <div className="notes" id="notes">
         <Menu
+          className="Notes-menu"
           pageWrapId={"notes-editor"}
           isOpen={props.isOpen}
           onStateChange={(state) => props.setIsOpen(state.isOpen)}
@@ -47,6 +53,7 @@ function Notes(props) {
           <List
             notes={notes}
             selectNote={selectNote}
+            createNote={createNote}
             current_note={current_note}
           />
         </Menu>
