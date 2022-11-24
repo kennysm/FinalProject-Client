@@ -22,4 +22,14 @@
 .button_More:hover {
   background-color: $custom-purple;
   border-color: $custom-purple;
+  color: white;
+}
+
+.notes-editor {
+  padding: 0;
+  height: calc(100% - 43px);
+
+  .quill {
+    height: 100%;
+  }
 }

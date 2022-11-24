@@ -20,6 +20,7 @@
     "react": "^16.8.6",
     "react-burger-menu": "^3.0.8",
     "react-dom": "^16.8.6",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^5.2.0",
     "sass": "^1.56.1",
     "tslib": "^2.4.1"
