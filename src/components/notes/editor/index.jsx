@@ -43,8 +43,8 @@ function Editor(props) {
     <Fragment>
       <ReactQuill
         value={currentContent}
-        onChange={handleChange}
         modules={modules}
+        onChange={handleChange}
       />
     </Fragment>
   );
